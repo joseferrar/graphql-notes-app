@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme/default";
+import "./App.css";
+import RouteFC from "./routes/RouteFC";
 
 function App() {
+  const client = new ApolloClient({
+    uri: "http://localhost:8000/graphql",
+    cache: new InMemoryCache(),
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <ToastContainer />
+          <RouteFC />
+        </ThemeProvider>
+      </ApolloProvider>
     </div>
   );
 }
