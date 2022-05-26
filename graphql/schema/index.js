@@ -55,6 +55,7 @@ type RootMutation {
     createUser(userInput: UserInput): User
     bookEvent(eventId: ID!): Booking!
     deleteEvent(eventId: ID!): Event!
+    updateEvent(eventId: ID!): Event!
 }
 
 schema {

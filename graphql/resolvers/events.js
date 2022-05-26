@@ -39,4 +39,18 @@ module.exports = {
     console.log(delEvent)
     return "event deleted";
   },
+
+  updateEvent: async (args, req) => {
+    if(!req.isAuth) {
+      throw new Error('You are not authenticated')
+    } 
+    console.log(args)
+   return await Event.findByIdAndUpdate(args.eventId, {
+      title: args.title,
+      description: args.description,
+      price: args.price,
+      date: args.date,
+    });
+  },
+
 };
