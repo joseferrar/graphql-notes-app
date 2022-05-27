@@ -47,7 +47,7 @@ input UserInput {
 type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
-    login(email: String!, password: String!): AuthData!
+
 }
 
 type RootMutation {
@@ -56,6 +56,7 @@ type RootMutation {
     bookEvent(eventId: ID!): Booking!
     deleteEvent(eventId: ID!): Event!
     updateEvent(eventId: ID!): Event!
+    login(email: String!, password: String!): AuthData!
 }
 
 schema {

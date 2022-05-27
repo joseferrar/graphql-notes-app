@@ -11,10 +11,10 @@ const REGISTER = gql`
 `;
 
 const LOGIN = gql`
-  query Login($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      userId
       token
+      userId
       tokenExpiration
     }
   }

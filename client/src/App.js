@@ -1,8 +1,10 @@
 import {
   ApolloClient,
   InMemoryCache,
+  createHttpLink,
   ApolloProvider,
 } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "@mui/material/styles";
@@ -11,8 +13,25 @@ import "./App.css";
 import RouteFC from "./routes/RouteFC";
 
 function App() {
-  const client = new ApolloClient({
+  const httpLink = createHttpLink({
     uri: "http://localhost:8000/graphql",
+  });
+
+  const token = localStorage.getItem("token");
+  const bearerToken = token?.slice(1);
+  console.log(bearerToken);
+
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${bearerToken}` : "",
+      },
+    };
+  });
+
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 

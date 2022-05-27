@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import Box from "@mui/material/Box";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -19,9 +19,11 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import { theme } from "../theme/default";
 import { toast } from "react-toastify";
+import { LOGIN } from "../graphql/Queries";
 
 function Login() {
   const navigate = useNavigate();
+  const [login, { loading, data, error }] = useMutation(LOGIN);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const formik = useFormik({
     initialValues: {
@@ -37,6 +39,21 @@ function Login() {
     }),
     onSubmit: async (data) => {
       console.log(data);
+
+      login({ variables: data })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("token", JSON.stringify(res.data.login.token));
+          const token = localStorage.getItem("token");
+          if (token) {
+            // navigate("/");
+            // navigate("/profile");
+            toast.success(`Sucessfully login!!!`);
+          }
+        })
+        .catch((error) => {
+          toast.error("Invalid email or password");
+        });
     },
   });
 
@@ -50,7 +67,7 @@ function Login() {
         overflow: "hidden",
         width: "100%",
         backgroundSize: "cover",
-        marginTop: theme.spacing(6)
+        marginTop: theme.spacing(6),
       }}
     >
       <Paper
