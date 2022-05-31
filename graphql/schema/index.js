@@ -57,6 +57,7 @@ type RootMutation {
     deleteEvent(eventId: ID!): Event!
     updateEvent(eventId: ID!): Event!
     login(email: String!, password: String!): AuthData!
+    getUser(userId: ID!): User!
 }
 
 schema {
