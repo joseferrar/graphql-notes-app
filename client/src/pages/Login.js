@@ -46,12 +46,12 @@ function Login() {
           localStorage.setItem("token", JSON.stringify(res.data.login.token));
           const token = localStorage.getItem("token");
           if (token) {
-            // navigate("/");
-            // navigate("/profile");
-            toast.success(`Sucessfully login!!!`);
+            navigate("/home");
+            window.location.reload();
           }
         })
         .catch((error) => {
+          navigate("/");
           toast.error("Invalid email or password");
         });
     },

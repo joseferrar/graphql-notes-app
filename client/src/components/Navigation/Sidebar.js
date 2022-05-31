@@ -70,7 +70,7 @@ const Sidebar = (props) => {
       <Stack direction="column" spacing={1} marginTop={2} marginLeft={5} marginBottom={3}>
         <Avatar
           alt="Remy Sharp"
-          src="https://bi.im-g.pl/im/e9/ad/18/z25877225Q,Elon-Musk.jpg"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Flag_of_NATO.svg/640px-Flag_of_NATO.svg.png"
           sx={{ width: 120, height: 120 }}
         />
         <Typography variant="body1" fontWeight="bold" color="white">
