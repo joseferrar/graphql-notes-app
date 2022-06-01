@@ -17,31 +17,29 @@ import HomeIcon from '@mui/icons-material/Home';
 import { theme } from "../../theme/default";
 import { GET_USER_ID } from "../../graphql/Queries";
 
-const useStyles = makeStyles({
-  active: {
+ const active = {
+  background: theme.palette.default.main,
+  color: "#fff",
+  borderTopRightRadius: 20,
+  borderEndEndRadius: 20,
+  "&:hover": {
     background: theme.palette.default.main,
     color: theme.palette.success.main,
     borderTopRightRadius: 20,
     borderEndEndRadius: 20,
-    "&:hover": {
-      background: theme.palette.default.main,
-      color: theme.palette.success.main,
-      borderTopRightRadius: 20,
-      borderEndEndRadius: 20,
-    },
   },
-  text: {
-    color: theme.palette.success.main,
-    fontSize: 16,
-  },
-  icon: {
-    color: theme.palette.success.main,
-  },
-  activeIcon: {
-    color: "#fff",
-    fontSize: 16,
-  },
-});
+ }
+ const text = {
+  color: "#fff",
+  fontSize: 16,
+ }
+ const icon = {
+  color: "#fff",
+ }
+ const activeIcon = {
+  color: "#fff",
+  fontSize: 16,
+ }
 
 const userRoutes = [
   {
@@ -70,7 +68,6 @@ const Sidebar = (props) => {
   const [getUser, { loading, data, error }] = useMutation(GET_USER_ID);
 
   const { setMobileOpen } = props;
-  const classes = useStyles();
   const location = useLocation();
   const navigate = useNavigate();
   console.log(data);
@@ -112,18 +109,20 @@ const Sidebar = (props) => {
               style={{ marginTop: 14 }}
               button
               onClick={() => {
+                
                 navigate(item.path);
                 setMobileOpen(false);
+            
               }}
               className={
-                location.pathname === item.path ? classes.active : null
+                location.pathname === item.path ? active : active
               }
             >
               <ListItemIcon
                 className={
                   location.pathname === item.path
-                    ? classes.icon
-                    : classes.activeIcon
+                    ? icon
+                    : activeIcon
                 }
               >
                 {item.icon}
@@ -133,8 +132,8 @@ const Sidebar = (props) => {
                 variant="body1"
                 className={
                   location.pathname === item.path
-                    ? classes.text
-                    : classes.activeIcon
+                    ? text
+                    : activeIcon
                 }
               >
                 {item.name}

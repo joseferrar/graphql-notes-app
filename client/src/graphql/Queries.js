@@ -38,4 +38,13 @@ const GET_ALL_NOTES = gql`
     }
   }
 `;
-export { REGISTER, LOGIN, GET_USER_ID, GET_ALL_NOTES };
+
+const CREATE_NOTES = gql`
+  mutation Mutation($eventInput: EventInput) {
+    createEvent(eventInput: $eventInput) {
+      title
+      description
+    }
+  }
+`;
+export { REGISTER, LOGIN, GET_USER_ID, GET_ALL_NOTES, CREATE_NOTES };

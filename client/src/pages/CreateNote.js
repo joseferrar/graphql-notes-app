@@ -19,9 +19,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import { theme } from "../theme/default";
-import { REGISTER } from "../graphql/Queries";
+import { CREATE_NOTES } from "../graphql/Queries";
 
 function CreateNote() {
+  const [createEvent, { loading, data, error }] = useMutation(CREATE_NOTES);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -34,6 +35,11 @@ function CreateNote() {
     }),
     onSubmit: async (data, reset) => {
       console.log(data);
+      await createEvent({ variables: { eventInput: data } })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((error) => toast.error(error.message));
     },
   });
 

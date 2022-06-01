@@ -13,9 +13,10 @@ function GetNotes() {
   const { loading, data } = useQuery(GET_ALL_NOTES);
 
   return (
+    <>
     <TableContainer component={Paper} style={{width: 800, marginLeft: "auto", marginRight: "auto"}}>
       <Table aria-label="simple table">
-        <TableHead style={{backgroundColor: "#000"}}>
+        <TableHead style={{backgroundColor: "#0da2ff"}}>
           <TableRow>
             <TableCell style={{color: "#fff"}}>S.No</TableCell>
             <TableCell  style={{color: "#fff"}}>Title</TableCell>
@@ -38,6 +39,7 @@ function GetNotes() {
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 }
 
