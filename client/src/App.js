@@ -25,7 +25,7 @@ function App() {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${bearerToken}` : "",
+        authorization: token ? "Bearer " + JSON.parse(token) : "",
       },
     };
   });
