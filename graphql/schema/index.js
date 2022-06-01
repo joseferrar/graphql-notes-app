@@ -10,7 +10,7 @@ type Booking {
 }
 
 type Event {
-  _id: ID!
+  id: ID!
   title: String!
   description: String!
 }

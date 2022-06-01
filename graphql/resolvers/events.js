@@ -3,15 +3,9 @@ const User = require("../../models/user");
 
 module.exports = {
   events: async () => {
-    try {
-      const events = await Event.find();
-      return events.map((event) => {
-        return transformEvent(event);
-      });
-    } catch (err) {
-      throw err;
-    }
+    return Event.find({});
   },
+
   createEvent: async (args, req) => {
     if (!req.isAuth) {
       throw new Error("Unauthenticated!");
@@ -29,23 +23,24 @@ module.exports = {
     }
   },
   deleteEvent: async (args, req) => {
-    if(!req.isAuth) {
-      throw new Error('You are not authenticated')
-    } 
-    const delEvent = await Event.findByIdAndDelete({ _id: args.eventId }).exec();
-    console.log(delEvent)
+    if (!req.isAuth) {
+      throw new Error("You are not authenticated");
+    }
+    const delEvent = await Event.findByIdAndDelete({
+      _id: args.eventId,
+    }).exec();
+    console.log(delEvent);
     return "event deleted";
   },
 
   updateEvent: async (args, req) => {
-    if(!req.isAuth) {
-      throw new Error('You are not authenticated')
-    } 
-    console.log(args)
-   return await Event.findByIdAndUpdate(args.eventId, {
+    if (!req.isAuth) {
+      throw new Error("You are not authenticated");
+    }
+    console.log(args);
+    return await Event.findByIdAndUpdate(args.eventId, {
       title: args.eventId,
       description: args.eventId,
     });
   },
-
 };
