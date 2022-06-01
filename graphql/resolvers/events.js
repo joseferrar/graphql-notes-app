@@ -29,11 +29,8 @@ module.exports = {
     if (!req.isAuth) {
       throw new Error("You are not authenticated");
     }
-    const delEvent = await Event.findByIdAndDelete({
-      _id: args.eventId,
-    }).exec();
-    console.log(delEvent);
-    return "event deleted";
+    return  await Event.findByIdAndDelete(args.eventId).exec();
+
   },
 
   updateEvent: async (args, req) => {
