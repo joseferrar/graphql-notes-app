@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
 import { useNavigate, useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import List from "@mui/material/List";
@@ -76,6 +77,11 @@ const Sidebar = (props) => {
   React.useEffect(() => {
     getUser({ variables: { userId: "628f2fb8fad50b0694df74ba" } });
   }, []);
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
   return (
     <div>
       <Stack
@@ -135,6 +141,14 @@ const Sidebar = (props) => {
             </ListItem>
           </div>
         ))}
+        <Button
+          variant="contained"
+          color="secondary"
+          style={{ marginLeft: 40, marginTop: 20 }}
+          onClick={Logout}
+        >
+          logout
+        </Button>
       </List>
     </div>
   );
