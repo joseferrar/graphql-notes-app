@@ -9,10 +9,11 @@ import Stack from "@mui/material/Stack";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
+import AddIcon from '@mui/icons-material/Add';
 import ListItemIcon from "@mui/material/ListItemIcon";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import WorkIcon from "@mui/icons-material/Work";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import HomeIcon from '@mui/icons-material/Home';
 import { theme } from "../../theme/default";
 import { GET_USER_ID } from "../../graphql/Queries";
 
@@ -45,21 +46,21 @@ const useStyles = makeStyles({
 const userRoutes = [
   {
     id: 1,
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: <DashboardIcon />,
+    path: "/home",
+    name: "Home",
+    icon: <HomeIcon />,
   },
   {
     id: 2,
-    path: "/cart",
-    name: "Cart",
-    icon: <ShoppingCartIcon />,
+    path: "/createNote",
+    name: "Add note",
+    icon: <AddIcon />,
   },
   {
     id: 3,
-    path: "/myorders",
-    name: "Orders",
-    icon: <WorkIcon />,
+    path: "/notes",
+    name: "Notes",
+    icon: <MenuBookIcon />,
   },
 ];
 
