@@ -29,4 +29,13 @@ const GET_USER_ID = gql`
   }
 `;
 
-export { REGISTER, LOGIN, GET_USER_ID };
+const GET_ALL_NOTES = gql`
+  query {
+    events {
+      id
+      title
+      description
+    }
+  }
+`;
+export { REGISTER, LOGIN, GET_USER_ID, GET_ALL_NOTES };
