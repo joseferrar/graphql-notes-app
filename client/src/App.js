@@ -18,14 +18,14 @@ function App() {
   });
 
   const token = localStorage.getItem("token");
-  const bearerToken = token?.slice(1);
-  console.log(bearerToken);
+  const userData = JSON.parse(token)
+  // console.log(userData);
 
   const authLink = setContext((_, { headers }) => {
     return {
       headers: {
         ...headers,
-        authorization: token ? "Bearer " + JSON.parse(token) : "",
+        authorization: token ? "Bearer " + userData?.token : "",
       },
     };
   });

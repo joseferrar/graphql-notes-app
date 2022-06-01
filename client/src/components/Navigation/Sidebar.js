@@ -65,9 +65,8 @@ const userRoutes = [
 ];
 
 const Sidebar = (props) => {
-  // const { loading, data } = useMutation(GET_USER_ID, {
-  //   variables: { id: "628f2fb8fad50b0694df74ba" },
-  // });
+  const token = localStorage.getItem("token");
+  const userData = JSON.parse(token)
   const [getUser, { loading, data, error }] = useMutation(GET_USER_ID);
 
   const { setMobileOpen } = props;
@@ -75,8 +74,9 @@ const Sidebar = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log(data);
+  
   React.useEffect(() => {
-    getUser({ variables: { userId: "628f2fb8fad50b0694df74ba" } });
+    getUser({ variables: { userId: userData?.userId } });
   }, []);
 
   const Logout = () => {

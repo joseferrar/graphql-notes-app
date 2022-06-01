@@ -43,7 +43,7 @@ function Login() {
       login({ variables: data })
         .then((res) => {
           console.log(res);
-          localStorage.setItem("token", JSON.stringify(res.data.login.token));
+          localStorage.setItem("token", JSON.stringify(res.data.login));
           const token = localStorage.getItem("token");
           if (token) {
             navigate("/home");
