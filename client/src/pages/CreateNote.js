@@ -19,10 +19,12 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import TextField from "@mui/material/TextField";
 import { theme } from "../theme/default";
-import { CREATE_NOTES } from "../graphql/Queries";
+import { CREATE_NOTES, GET_ALL_NOTES } from "../graphql/Queries";
 
 function CreateNote() {
-  const [createEvent, { loading, data, error }] = useMutation(CREATE_NOTES);
+  const [createEvent, { loading, data, error }] = useMutation(CREATE_NOTES, {
+    refetchQueries: [{ query: GET_ALL_NOTES }],
+  });
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -31,15 +33,16 @@ function CreateNote() {
     },
     validationSchema: yup.object({
       title: yup.string().required("Title is required"),
-      description: yup.string().required("Description is required")
+      description: yup.string().required("Description is required"),
     }),
     onSubmit: async (data, reset) => {
       console.log(data);
       await createEvent({ variables: { eventInput: data } })
-      .then((res) => {
-        window.location.reload();
-      })
-      .catch((error) => toast.error(error.message));
+        .then((res) => {
+          toast.success("Created Successfully!!!")
+          navigate("/notes")
+        })
+        .catch((error) => toast.error(error.message));
     },
   });
 
@@ -96,10 +99,13 @@ function CreateNote() {
             autoComplete="description"
             value={formik?.values?.description}
             onChange={formik.handleChange}
-            helperText={formik.touched.description ? formik.errors.description : null}
-            error={formik.touched.description ? formik.errors.description : null}
+            helperText={
+              formik.touched.description ? formik.errors.description : null
+            }
+            error={
+              formik.touched.description ? formik.errors.description : null
+            }
           />
-      
 
           <Button
             type="submit"
@@ -109,6 +115,7 @@ function CreateNote() {
             size="large"
             style={{ marginTop: theme.spacing(4) }}
             onClick={formik.handleSubmit}
+            disabled={loading}
           >
             Submit
           </Button>

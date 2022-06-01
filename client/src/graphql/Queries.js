@@ -47,4 +47,19 @@ const CREATE_NOTES = gql`
     }
   }
 `;
-export { REGISTER, LOGIN, GET_USER_ID, GET_ALL_NOTES, CREATE_NOTES };
+
+const DELETE_NOTE = gql`
+  mutation deleteEvent($eventId: ID!) {
+    deleteEvent(eventId: $eventId) {
+      id
+    }
+  }
+`;
+export {
+  REGISTER,
+  LOGIN,
+  GET_USER_ID,
+  GET_ALL_NOTES,
+  CREATE_NOTES,
+  DELETE_NOTE,
+};
