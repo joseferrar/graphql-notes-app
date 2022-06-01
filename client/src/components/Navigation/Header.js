@@ -25,7 +25,7 @@ const drawerWidth = 240;
 
 function Header(props) {
   const { window } = props;
- 
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -46,7 +46,8 @@ function Header(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -145,13 +146,12 @@ function Header(props) {
   );
 
   return (
-    <Box sx={{ display: "flex", backgroundColor: "#fff" }}>
+    <Box sx={{ display: "flex", backgroundColor: "#0da2ff" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
-        elevation={0}
         sx={{
-          bgcolor: theme.palette.default.main,
+          bgcolor: "#0da2ff",
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}
@@ -169,86 +169,21 @@ function Header(props) {
             variant="h6"
             noWrap
             component="div"
-            color={theme.palette.common.dark}
+            color={theme.palette.common.white}
             textTransform="capitalize"
           >
-    
+            Notes App
           </Typography>
 
           <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>
-            <Tooltip title="Translate">
-              <Button
-                sx={{ textTransform: "capitalize", color: theme.palette.common.dark }}
-                onClick={handleClick}
-                startIcon={<TranslateIcon />}
-              >
-                Translate
-              </Button>
-            </Tooltip>
-
-            <Menu
-              anchorEl={translate}
-              id="account-menu"
-              open={open}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: "visible",
-                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                  mt: 1.5,
-                  "& .MuiAvatar-root": {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  "&:before": {
-                    content: '""',
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: "background.paper",
-                    transform: "translateY(-50%) rotate(45deg)",
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-            >
-              <MenuItem>
-                <Avatar
-                  variant="square"
-                  alt="English"
-               
-                  style={{ width: 25, height: 25 }}
-                />{" "}
-                English
-              </MenuItem>
-              <MenuItem>
-                <Avatar
-                  variant="square"
-                  alt="Russian"
-                 
-                  style={{ width: 25, height: 25 }}
-                />{" "}
-                Russian
-              </MenuItem>
-            </Menu>
-
             <IconButton size="large" aria-label="show 4 new mails">
               <Badge badgeContent={4} color="error">
-                <MailIcon />
+                <MailIcon style={{ color: "#fff" }} />
               </Badge>
             </IconButton>
             <IconButton size="large" aria-label="show 17 new notifications">
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+                <NotificationsIcon style={{ color: "#fff" }} />
               </Badge>
             </IconButton>
             <IconButton
@@ -301,9 +236,7 @@ function Header(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor: "#1FAA59",
-              borderBottomRightRadius: 22,
-              borderTopRightRadius: 22,
+              backgroundColor: "#0da2ff",
             },
           }}
         >
@@ -316,9 +249,7 @@ function Header(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor: "#1FAA59",
-              borderBottomRightRadius: 22,
-              borderTopRightRadius: 22,
+              backgroundColor: "#0da2ff",
             },
           }}
           open
