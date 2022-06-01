@@ -20,4 +20,13 @@ const LOGIN = gql`
   }
 `;
 
-export { REGISTER, LOGIN };
+const GET_USER_ID = gql`
+  mutation getUser($userId: ID!) {
+    getUser(userId: $userId) {
+      username
+      email
+    }
+  }
+`;
+
+export { REGISTER, LOGIN, GET_USER_ID };

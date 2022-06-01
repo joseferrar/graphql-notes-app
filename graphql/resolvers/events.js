@@ -19,9 +19,6 @@ module.exports = {
     const event = new Event({
       title: args.eventInput.title,
       description: args.eventInput.description,
-      price: +args.eventInput.price,
-      date: new Date(args.eventInput.date),
-      creator: req.userId,
     });
     try {
       await event.save();
@@ -46,10 +43,8 @@ module.exports = {
     } 
     console.log(args)
    return await Event.findByIdAndUpdate(args.eventId, {
-      title: args.title,
-      description: args.description,
-      price: args.price,
-      date: args.date,
+      title: args.eventId,
+      description: args.eventId,
     });
   },
 

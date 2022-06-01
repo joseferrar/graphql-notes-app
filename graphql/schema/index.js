@@ -13,9 +13,6 @@ type Event {
   _id: ID!
   title: String!
   description: String!
-  price: Float!
-  date: String!
-  creator: User!
 }
 
 type User {
@@ -34,8 +31,11 @@ type AuthData {
 input EventInput {
   title: String!
   description: String!
-  price: Float!
-  date: String!
+}
+
+input UpdateInput {
+  title: String!
+  description: String!
 }
 
 input UserInput {
