@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const graphqlHttp = require("express-graphql");
@@ -33,10 +34,9 @@ app.use(
 );
 
 mongoose
-  .connect(
-    `mongodb+srv://admin:Needforspeed4@cluster0.sjx0c.mongodb.net/Graphql_jwt?retryWrites=true&w=majority`,  {
-      useNewUrlParser: true,
-     })
+  .connect(process.env.MONGODB, {
+    useNewUrlParser: true,
+  })
   .then(() => {
     app.listen(8000);
   })
