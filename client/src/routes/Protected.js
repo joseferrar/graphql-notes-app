@@ -5,17 +5,22 @@ import MainLayout from "../components/Navigation/MainLayout";
 const Protected = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       navigate("/home");
     } else if (!token) {
-      localStorage.removeItem("token");
       navigate("/");
     }
   }, [token]);
+
+  setTimeout(() => {
+    localStorage.clear();
+    navigate("/");
+  }, 15000);
+
   return (
-    <MainLayout>
+    <MainLayout> 
       <Outlet />
     </MainLayout>
   );

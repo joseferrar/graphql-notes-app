@@ -80,6 +80,7 @@ const Sidebar = (props) => {
     localStorage.removeItem("token");
     navigate("/");
   };
+  
   return (
     <div>
       <Stack
